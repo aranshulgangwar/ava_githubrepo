@@ -1,0 +1,38 @@
+- name: Install Docker and deploy FastAPI
+  hosts: db
+  become: true
+  gather_facts: false
+  vars:
+    app_dir: /opt/fastapi-docker
+    image_name: fastapi-app
+    container_name: fastapi-container
+
+
+  tasks:
+
+
+    - name:  create app directory
+      file:
+        path: "{{app_dir}}"
+        state: directory
+
+
+    - name: copy FASTAPI Code
+      copy:
+        src: ./app/
+        dest: "{{app_dir}}"
+
+
+    - name: Build Docker file
+      command: docker build -t {{image_name}} .
+      args:
+        chdir: "{{app_dir}}"
+
+    - name: stop and remove any existing container
+      shell: |
+        docker rm -f {{container_name}} || true
+
+    - name: run the container from created image
+      command: >
+        docker run -d --name {{container_name}}
+        -p 9000:8000 {{image_name}}
