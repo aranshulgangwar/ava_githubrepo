@@ -8,6 +8,13 @@
  vi inventory.ini
  ansible -i inventory.ini -m ping web
  ansible -i inventory.ini -m ping db
- vi playbook.yaml
- ansible-playbook -i inventory.ini playbook1.yaml
+ vi playbook2.yaml
+ ansible-playbook -i inventory.ini playbook2.yaml
  history
+
+
+ [web]
+ controlplane
+
+ [db]
+ node01

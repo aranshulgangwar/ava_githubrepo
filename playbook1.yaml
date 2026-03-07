@@ -1,4 +1,4 @@
-- hosts: db
+- hosts: web
   become: true
 
   tasks:
@@ -6,3 +6,11 @@
       file:
         path: ./icici-dir
         state: directory
+      register: dir_status
+    - name: print post success
+      debug:
+        msg: "Dir created"
+      when: dir_status.changed
+
+
+
