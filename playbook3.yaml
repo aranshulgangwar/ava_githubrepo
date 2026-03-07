@@ -1,0 +1,7 @@
+- hosts: db
+  become: true
+  tasks:
+    - name: 'update default index.html'
+      copy:
+        src: 'index.html'
+        dest: var/www/html

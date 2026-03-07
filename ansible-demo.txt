@@ -13,8 +13,7 @@
  history
 
 
- [web]
- controlplane
-
- [db]
- node01
+[web]
+controlplane
+[db]
+node01
