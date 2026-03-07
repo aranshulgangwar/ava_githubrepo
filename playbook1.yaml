@@ -1,0 +1,8 @@
+- hosts: db
+  become: true
+
+  tasks:
+    - name: create a directory on node01
+      file:
+        path: ./icici-dir
+        state: directory
